@@ -433,7 +433,7 @@ def main():
         left_arm = MoveGroupPythonInteface('left_arm')
         # left_arm = MoveGroupPythonInteface('right_arm')
         # left_arm.go_to_joint_state()
-        left_arm.go_to_joint_state([0,-1.01,-0.06,2.07,0.19,0.49,0])
+        left_arm.go_to_joint_state([0,-1.01,-0.06,2.07,0.0,0.49,0])
 
         while(1):
         # left_arm.go_to_pose_goal()

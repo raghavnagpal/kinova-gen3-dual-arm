@@ -515,6 +515,26 @@
         <child link="rightend_effector_link"/>
         <axis xyz="0 0 0"/>
     </joint>
+
+    <link name="camera">
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <material name="red"/>
+        </visual>
+        <inertial>
+            <mass value="0.1"/>
+            <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03"/>
+        </inertial>
+    </link>
+
+    <joint name="fixed_camera" type="fixed">
+        <origin xyz="0 0 0" rpy="0 -1.57 0"/>
+        <parent link="leftend_effector_link"/>
+        <child link="camera"/>
+    </joint>
     <!-- This line was removed by Kinova because we replaced the transmission file with our own
     <xacro:include filename="$(find robotiq_2f_85_gripper_visualization)/urdf/robotiq_arg2f_transmission.xacro" /> -->
     <!-- This joint was added by Kinova -->
@@ -664,5 +684,45 @@
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
             <robotNamespace>/</robotNamespace>
         </plugin>
+    </gazebo>
+    <gazebo reference="camera">
+        <material>Gazebo/Red</material>
+        <sensor type="camera" name="camera">
+            <update_rate>30.0</update_rate>
+            <camera name="head">
+                <horizontal_fov>1.3962634</horizontal_fov>
+                <image>
+                    <width>800</width>
+                    <height>800</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.02</near>
+                    <far>300</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <!-- Noise is sampled independently per pixel on each frame.
+                         That pixel's noise value is added to each of its color
+                         channels, which at that point lie in the range [0,1]. -->
+                    <mean>0.0</mean>
+                    <stddev>0.007</stddev>
+                </noise>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>0.0</updateRate>
+                <cameraName>/cam/camera</cameraName>
+                <imageTopicName>image_raw</imageTopicName>
+                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+                <frameName>camera</frameName>
+                <hackBaseline>0.07</hackBaseline>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+            </plugin>
+        </sensor>
     </gazebo>
 </robot>
