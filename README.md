@@ -23,4 +23,9 @@ Steps to run the setup:
   >source devel/setup.sh
   >rosrun kortex_two_arms move_grp.py 
   ```
-  
+ 
+ Image Topic names
+ ```sh
+ /cam/camera/image_raw
+ /cam/camera/image_raw1
+ ```
