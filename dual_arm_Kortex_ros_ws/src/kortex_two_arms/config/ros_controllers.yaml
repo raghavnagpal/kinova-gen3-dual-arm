@@ -1,0 +1,126 @@
+# MoveIt-specific simulation settings
+moveit_sim_hw_interface:
+  joint_model_group: controllers_initial_group_
+  joint_model_group_pose: controllers_initial_pose_
+# Settings for ros_control control loop
+generic_hw_control_loop:
+  loop_hz: 300
+  cycle_time_error_threshold: 0.01
+# Settings for ros_control hardware interface
+hardware_interface:
+  joints:
+    - leftjoint_1
+    - leftjoint_2
+    - leftjoint_3
+    - leftjoint_4
+    - leftjoint_5
+    - leftjoint_6
+    - leftjoint_7
+    - rightjoint_1
+    - rightjoint_2
+    - rightjoint_3
+    - rightjoint_4
+    - rightjoint_5
+    - rightjoint_6
+    - rightjoint_7
+    - rightfinger_joint
+  sim_control_mode: 1  # 0: position, 1: velocity
+# Publish all joint states
+# Creates the /joint_states topic necessary in ROS
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+
+left_arm_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+    - leftjoint_1
+    - leftjoint_2
+    - leftjoint_3
+    - leftjoint_4
+    - leftjoint_5
+    - leftjoint_6
+    - leftjoint_7
+  gains:
+    leftjoint_1: {p: 3000.0, i: 0.0, d: 2.0, i_clamp_min: -100.0, i_clamp_max: 100.0}
+    leftjoint_2: {p: 50000.0, i: 0.0, d: 0.0, i_clamp_min: -5.0, i_clamp_max: 5.0}
+    leftjoint_3: {p: 3000.0, i: 0.0, d: 0.0, i_clamp_min: -1.0, i_clamp_max: 1.0}
+    leftjoint_4: {p: 50000.0, i: 0.0, d: 0.0, i_clamp_min: -1.0, i_clamp_max: 1.0}
+    leftjoint_5: {p: 750.0, i: 0.0, d: 0.2, i_clamp_min: -1.0, i_clamp_max: 1.0}
+    leftjoint_6: {p: 5000.0, i: 0.0, d: 1.0, i_clamp_min: -1.0, i_clamp_max: 1.0}
+    leftjoint_7: {p: 100.0, i: 0.0, d: 0.0, i_clamp_min: -0.1, i_clamp_max: 0.1}
+
+right_arm_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+    - rightjoint_1
+    - rightjoint_2
+    - rightjoint_3
+    - rightjoint_4
+    - rightjoint_5
+    - rightjoint_6
+    - rightjoint_7
+  gains:
+    rightjoint_1: {p: 3000.0, i: 0.0, d: 2.0, i_clamp_min: -100.0, i_clamp_max: 100.0}
+    rightjoint_2: {p: 50000.0, i: 0.0, d: 0.0, i_clamp_min: -5.0, i_clamp_max: 5.0}
+    rightjoint_3: {p: 3000.0, i: 0.0, d: 0.0, i_clamp_min: -1.0, i_clamp_max: 1.0}
+    rightjoint_4: {p: 50000.0, i: 0.0, d: 0.0, i_clamp_min: -1.0, i_clamp_max: 1.0}
+    rightjoint_5: {p: 750.0, i: 0.0, d: 0.2, i_clamp_min: -1.0, i_clamp_max: 1.0}
+    rightjoint_6: {p: 5000.0, i: 0.0, d: 1.0, i_clamp_min: -1.0, i_clamp_max: 1.0}
+    rightjoint_7: {p: 100.0, i: 0.0, d: 0.0, i_clamp_min: -0.1, i_clamp_max: 0.1}
+
+#gazebo_ros_control:
+#  pid_gains:
+#    leftjoint_1: {p: 3000.0, i: 0.0, d: 2.0, i_clamp_min: -100.0, i_clamp_max: 100.0}
+#    leftjoint_2: {p: 50000.0, i: 0.0, d: 0.0, i_clamp_min: -5.0, i_clamp_max: 5.0}
+#    leftjoint_3: {p: 3000.0, i: 0.0, d: 0.0, i_clamp_min: -1.0, i_clamp_max: 1.0}
+#    leftjoint_4: {p: 50000.0, i: 0.0, d: 0.0, i_clamp_min: -1.0, i_clamp_max: 1.0}
+#    leftjoint_5: {p: 750.0, i: 0.0, d: 0.2, i_clamp_min: -1.0, i_clamp_max: 1.0}
+#    leftjoint_6: {p: 5000.0, i: 0.0, d: 1.0, i_clamp_min: -1.0, i_clamp_max: 1.0}
+#    leftjoint_7: {p: 100.0, i: 0.0, d: 0.0, i_clamp_min: -0.1, i_clamp_max: 0.1}
+
+
+#right_gripper_arm_controller:
+#  type: position_controllers/JointTrajectoryController
+#  joints:
+#    - rightfinger_joint
+#    - rightleft_inner_knuckle_joint
+#    - rightleft_inner_finger_joint
+#    - rightright_outer_knuckle_joint
+#    - rightright_inner_knuckle_joint
+#    - rightright_inner_finger_joint
+#
+#  gains:
+#    rightfinger_joint: {p: 100, d: 1, i: 1, i_clamp: 1}
+#    rightleft_inner_knuckle_joint: {p: 100, d: 1, i: 1, i_clamp: 1}
+#    rightleft_inner_finger_joint: {p: 100, d: 1, i: 1, i_clamp: 1}
+#    rightright_outer_knuckle_joint: {p: 100, d: 1, i: 1, i_clamp: 1}
+#    rightright_inner_knuckle_joint: {p: 100, d: 1, i: 1, i_clamp: 1}
+#    rightright_inner_finger_joint: {p: 100, d: 1, i: 1, i_clamp: 1}
+
+
+controller_list:
+  - name: left_arm_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - leftjoint_1
+      - leftjoint_2
+      - leftjoint_3
+      - leftjoint_4
+      - leftjoint_5
+      - leftjoint_6
+      - leftjoint_7
+  - name: right_arm_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - rightjoint_1
+      - rightjoint_2
+      - rightjoint_3
+      - rightjoint_4
+      - rightjoint_5
+      - rightjoint_6
+      - rightjoint_7

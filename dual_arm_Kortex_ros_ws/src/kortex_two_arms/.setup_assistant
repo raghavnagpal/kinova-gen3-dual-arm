@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: kortex_description
+    relative_path: multiple_robots/kortex_dual_robots.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/dual_robot.srdf
+  CONFIG:
+    author_name: raghav
+    author_email: raghav@wpi.edu
+    generated_timestamp: 1587626585
