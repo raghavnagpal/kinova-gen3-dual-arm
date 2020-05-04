@@ -29,7 +29,7 @@ Steps to run the setup:
  Image Topic names
  ```
  /cam/camera/image_raw
- /cam/camera/image_raw1
+ /cam/camera1/image_raw1
  ```
  
  # Dependancy installation steps for Ubuntu 16.04/ROS Kinetic
