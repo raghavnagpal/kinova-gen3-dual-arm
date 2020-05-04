@@ -29,3 +29,20 @@ Steps to run the setup:
  /cam/camera/image_raw
  /cam/camera/image_raw1
  ```
+ 
+ # Dependancy installation steps for Ubuntu 16.04/ROS Kinetic
+ 1.) Install moveit package:
+ ```sh
+ sudo apt-get install ros-kinetic-moveit
+ ```
+ 2.) Install this kinematics package:
+ ```sh
+ sudo apt-get install ros-kinetic-trac-ik-kinematics-plugin
+ ```
+ 3.) Install these controller packages:
+ sudo apt-get install ros-kinetic-effort-controllers
+ sudo apt-get install ros-kinetic-joint-trajectory-controller
+ sudo apt-get install ros-kinetic-joint-state-controller
+ ```
+ 
+ 
