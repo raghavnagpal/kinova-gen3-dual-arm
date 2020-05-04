@@ -1,6 +1,8 @@
 # dual-arm-kortex-ros
 dual arm kortex ros
 
+Note: You may need to install dependancies first. See below.
+
 Steps to run the setup:
 1.) catkin_make the workspace
   ```sh
@@ -40,6 +42,7 @@ Steps to run the setup:
  sudo apt-get install ros-kinetic-trac-ik-kinematics-plugin
  ```
  3.) Install these controller packages:
+ ```sh
  sudo apt-get install ros-kinetic-effort-controllers
  sudo apt-get install ros-kinetic-joint-trajectory-controller
  sudo apt-get install ros-kinetic-joint-state-controller
